@@ -61,30 +61,47 @@ const BigMedia: React.FC<MediaItem> = ({ source, type }) => {
   };
 
   const getYouTubeEmbedUrl = (url: string) => {
-    return`${url}?autoplay=1&mute=1`;
+    return `${url}?autoplay=1&mute=1`;
   };
 
   return (
     <>
       <MediaWrapper onClick={handleClick}>
-        {type === MediaType.YouTube ? (
+        {type === MediaType.YouTube && (
           <MediaIframe
             src={getYouTubeEmbedUrl(source)}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-        ) : (
-          <MediaImage src={`${process.env.PUBLIC_URL}${source}`} alt="Game Media" />
+        )}
+
+        {type === MediaType.Video && (
+          <video
+            src={`${process.env.PUBLIC_URL}${source}`}
+            controls
+            style={{ width: "70%", height: "100%", objectFit: "contain", backgroundColor: "black", }}
+          />
+        )}
+
+        {type === MediaType.Image && (
+          <MediaImage
+            src={`${process.env.PUBLIC_URL}${source}`}
+            alt="Game Media"
+          />
         )}
       </MediaWrapper>
 
-      {isPopupOpen && (
+      {isPopupOpen && type === MediaType.Image && (
         <PopupOverlay onClick={() => setIsPopupOpen(false)}>
-          <PopupImage src={`${process.env.PUBLIC_URL}${source}`} alt="Enlarged Media" />
+          <PopupImage
+            src={`${process.env.PUBLIC_URL}${source}`}
+            alt="Enlarged Media"
+          />
         </PopupOverlay>
       )}
     </>
   );
 };
+
 
 export default BigMedia;

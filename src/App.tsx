@@ -72,9 +72,9 @@ const App: React.FC = () => {
           <Route path="/about-me" element={<AboutMe />} />
         </Routes>
       </AppContainer>
-      <Footer />
+      
     </Router>
   );
 };
-
+//<Footer /> per info
 export default App;

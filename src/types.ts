@@ -14,11 +14,13 @@ export enum Platform {
 export enum GameEngine {
   Unity = "Unity",
   Unreal = "Unreal",
+  Terminal = "Terminal"
 }
 
 export enum MediaType {
   Image = "image",
-  YouTube = "youtube",
+  Video = "video",
+  YouTube = "youtube"
 }
 
 export interface MediaItem {
